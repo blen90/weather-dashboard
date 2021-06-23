@@ -1,4 +1,4 @@
-var searchBtnEl = document.querySelector("searchBtn");
+var searchBtnEl = document.querySelector("#search-button");
 var cityHistoryEl = document.querySelector(".row")
 
 //API key
@@ -32,14 +32,15 @@ var cityWeather = function (apiKey) {
     var todayWeather = document.getElementById(".today-weather")
     todayWeather.className = '';
 
-    var apiUrl = 'https://openweathermap.org/api/one-call-api' + apiKey + '/city';
+    var apiUrl = 'https://openweathermap.org/api/one-call-api/926ae894b8024b09ca286a6fee4ebb71/city';
     console.log(apiUrl)
+    
     fetch(apiUrl)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
             console.log(data);
-          displayRepos(data, user);
+          cityWeather(data, user);
         });
       } else {
         alert('Error: ' + response.statusText);
@@ -71,7 +72,7 @@ var cityWeather = function (apiKey) {
 
 
 //search button listener
-searchBtnEl.addEventListener("click, buttonClickHandler");
-console.log("We are searching");
+// searchBtnEl.addEventListener("click, buttonClickHandler");
+// console.log("We are searching");
 
 // cityWeather();
