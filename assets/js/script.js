@@ -1,8 +1,9 @@
-//sign up for API to get API key
+var searchBtnEl = document.querySelector("searchBtn");
+var cityHistoryEl = document.querySelector(".row")
 
-var aipKey = "926ae894b8024b09ca286a6fee4ebb71";
+//API key
 
-var city
+var apiKey = "926ae894b8024b09ca286a6fee4ebb71";
 
 //Search city history in localStorage
 
@@ -12,15 +13,20 @@ if (JSON.parse(localStorage.getItem("history")) != null)
 else
     citytyHistory = [];
 
-//Search button 
 
-var searchBtn = document.getElementById("#search-btn");
+//Search button click
+var buttonClickHandler = function (event) {
+  var search = event.target.getAttribute("#search-button");
 
-//search button listener
-searchBtn.addEventListener("click", cityWeather);
-console.log("We are searching");
+  if (search) {
+    cityWeather(search);
 
-//API key
+    cityHistoryEl.textContent = '';
+  }
+};
+
+
+
 
 var cityWeather = function (apiKey) {
     var todayWeather = document.getElementById(".today-weather")
@@ -63,4 +69,9 @@ var cityWeather = function (apiKey) {
 
 //use bootstrap to create layout
 
-cityWeather();
+
+//search button listener
+searchBtnEl.addEventListener("click, buttonClickHandler");
+console.log("We are searching");
+
+// cityWeather();
