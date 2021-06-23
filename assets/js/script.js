@@ -2,9 +2,47 @@
 
 var aipKey = "926ae894b8024b09ca286a6fee4ebb71";
 
+var city
 
-var apiUrl = 'https://openweathermap.org/api/one-call-api' + city + apiKey;
+//Search city history in localStorage
 
+var cityHistory;
+if (JSON.parse(localStorage.getItem("history")) != null)
+    cityHistory = JSON.parse(localStorage.getItem("history"));
+else
+    citytyHistory = [];
+
+//Search button 
+
+var searchBtn = document.getElementById("#search-btn");
+
+//search button listener
+searchBtn.addEventListener("click", cityWeather);
+console.log("We are searching");
+
+//API key
+
+var cityWeather = function (apiKey) {
+    var todayWeather = document.getElementById(".today-weather")
+    todayWeather.className = '';
+
+    var apiUrl = 'https://openweathermap.org/api/one-call-api' + apiKey + '/city';
+    console.log(apiUrl)
+    fetch(apiUrl)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+            console.log(data);
+          displayRepos(data, user);
+        });
+      } else {
+        alert('Error: ' + response.statusText);
+      }
+    })
+    .catch(function (error) {
+      alert('Unable to connect to Open Weather Map');
+    });
+}
 //icons provided to us by api
 //city
 //todays forecast
@@ -25,3 +63,4 @@ var apiUrl = 'https://openweathermap.org/api/one-call-api' + city + apiKey;
 
 //use bootstrap to create layout
 
+cityWeather();
