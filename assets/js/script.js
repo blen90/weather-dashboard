@@ -1,4 +1,9 @@
-//sign up for API
+//sign up for API to get API key
+
+var aipKey = "926ae894b8024b09ca286a6fee4ebb71";
+
+
+var apiUrl = 'https://openweathermap.org/api/one-call-api' + city + apiKey;
 
 //icons provided to us by api
 //city
