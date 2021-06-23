@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Weather Dashboard</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" <link rel="stylesheet"
+        href="assets/css/style.css">
+</head>
+
+<body>
+    <header>
+        <!--- Header -->
+        <div class="jumbotron">
+            <h1 class="display-4">Weather Dashboard</h1>
+        </div>
+    </header>
+    <!--- Blocks -->
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <h3>Search City:</h3>
+
+                    <!-- Form group search-->
+                    <div class="form-inline form-group">
+                        <input type="text" class="form-control" placeholder="City">
+                        <button class="btn btn-primary" type="search"><i class="fas fa-search"></i></button>
+                    </div>
+
+                    <!--List of search history-->
+                    <ul id="search-history" class="list-group"></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather infortmation-->
+
+        <div class="col-md-9">
+            <h2 id="today" class="today-weather visible">Today</h2>
+            <div id="five-day" class="row">
+            <h3 class="forecast visible">Five Day Forecast</h3>
+            </div>
+</body>
+
+</html>
