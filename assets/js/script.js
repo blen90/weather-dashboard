@@ -41,20 +41,44 @@ function searchCity() {
   var apiUrl = "api.openweathermap.org/data/2.5/weather?id={city id}&appid=926ae894b8024b09ca286a6fee4ebb71";
   console.log(apiUrl)
 
-// fetch(apiUrl)
-//   .then(function (response) {
-//     if (response.ok) {
-//       response.json().then(function (data) {
-//         console.log(data);
-//         cityWeather(data, user);
-//       });
-//     } else {
-//       alert('Error: ' + response.statusText);
-//     }
-//   })
-//   .catch(function (error) {
-//     alert('Unable to connect to Open Weather Map');
-//   });
+  fetch(apiUrl)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          console.log(data);
+          cityWeather(data, user);
+        });
+      } else {
+        alert('Error: ' + response.statusText);
+      }
+    })
+    .catch(function (error) {
+      alert('Unable to connect to Open Weather Map');
+    });
+
+  var todayCardHeader = document.createElement("h3");
+  todayCardHeader.className = "todayCard";
+  todayCardHeader.textContent = data.name + " - " + moment().format("LL");
+
+  var searchCardContainer = document.createElement("div");
+  searchCardContainer.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
+
+  var searchCard = document.createElement("div");
+  searchCard.className = "card-box"
+
+  var tempCard = document.createElement("p");
+  tempCard.className = "text";
+  tempCard.textContent = "Temperature: " + data.main.temp + "°F";
+
+  var humidityCard = document.createElement("p");
+  humidityCard.className = "text";
+  humidityCard.textContent = "Humidity: " + data.main.humidity + "°F";
+
+  var windCard = document.createElement("p");
+  windCard.className = "text";
+
+  var indexUv = document.createElement('p');
+  indexUv.className = "text";
 }
 //icons provided to us by api
 //city
