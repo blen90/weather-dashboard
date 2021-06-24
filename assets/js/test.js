@@ -11,5 +11,11 @@ $(document).ready(function () {
     function searchCity(searchValue) {
         console.log("hey were in searchCity!!!")
         console.log(searchValue, "in search city")
-    };
-     
+        
+
+        var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=" + apiKey + "&units=imperial";
+        // var fancyApiUrl =`api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid= ${apiKey}`
+        console.log(apiUrl)
+
+    }
+
