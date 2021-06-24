@@ -88,7 +88,7 @@ function searchCity() {
           searchCardContainer.appendChild(searchCard);
           today.appendChild(searchCardContainer);
 
-        }
+        });
 
 function forecastSearch(search) {
             var forecast = document.getElementById("#forecast");
