@@ -1,3 +1,11 @@
-.left-side {
-    display: inline;
+.jumbotron {
+   background-color: teal;
 }
+
+
+#today-weather {
+    text-align: center;
+}
+
+
+
