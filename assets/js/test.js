@@ -26,7 +26,9 @@ $(document).ready(function () {
                 var humidityEl = $("<h5>").addClass("card-text").text("Humidity: " + data.main.humidity + " %");
                 var windEl = $("<h5>").addClass("card-text").text("Wind speed: " + data.wind.speed + " MPH");
                 // var currentIcon = $("<div>").addClass("<img src='http://openweathermap.org/img/w/" + data.weather[0].icon + ".png' alt='Icon depicting current weather.'>");
-                var currentIcon = $("<div>").addClass("card-body").text("Weather icon: " + data.weather[0].icon);
+                // var currentIcon = $("<div>").addClass("card-body").text("Weather icon: " + data.weather[0].icon);
+                
+                var currentIcon = $("<div>").addClass("card-body").prepend("<img src='http://openweathermap.org/img/w/" + data.weather[0].icon + ".png' alt='Icon depicting current weather.'>");
                 console.log(currentIcon);
                 // var iconEl = $("<div>").addClass("card-image").(data.weather.icon);
                 var card = $("<div>").addClass("card");
