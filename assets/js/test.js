@@ -25,15 +25,17 @@ $(document).ready(function () {
                 var tempEl = $("<h5>").addClass("card-text").text("Temperature: " + data.main.temp + " F");
                 var humidityEl = $("<h5>").addClass("card-text").text("Humidity: " + data.main.humidity + " %");
                 var windEl = $("<h5>").addClass("card-text").text("Wind speed: " + data.wind.speed + " MPH");
-                var iconEl = $("<div>").addClass("src", "http://openweathermap.org/img/wn/" + data.weather[0].icon + ".jpg");
+                // var currentIcon = $("<div>").addClass("<img src='http://openweathermap.org/img/w/" + data.weather[0].icon + ".png' alt='Icon depicting current weather.'>");
+                var currentIcon = $("<div>").addClass("card-body").text("Weather icon: " + data.weather[0].icon);
+                console.log(currentIcon);
                 // var iconEl = $("<div>").addClass("card-image").(data.weather.icon);
                 var card = $("<div>").addClass("card");
                 var cardBody = $("<div>").addClass("card-body");
-                cardBody.append(titleEl, tempEl, humidityEl, windEl);
+                cardBody.append(titleEl, tempEl, humidityEl, windEl, currentIcon);
                 card.append(cardBody);
                 $("#today-weather").append(card);
 
-
+                
                 
 
             }
