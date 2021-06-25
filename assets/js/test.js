@@ -82,11 +82,11 @@ $(document).ready(function () {
     })
 }
 
-var uvQueryURL = "https://api.openweathermap.org/data/2.5/uvi?lat="+latitude+"&lon="+longitude+"&appid="+ apiKey;
+var uvUrl = "https://api.openweathermap.org/data/2.5/uvi?lat="+latitude+"&lon="+longitude+"&appid="+ apiKey;
 
-function getUVIndex(uvQueryURL){
+function uvI(uvUrl){
 
-    console.log("UV query URL : "+uvQueryURL);
+    console.log("UV query URL : "+uvUrl);
     
     $.ajax({
             
