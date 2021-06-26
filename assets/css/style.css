@@ -1,11 +1,14 @@
-.jumbotron {
-   background-color: teal;
-}
 
+
+div.card{
+   background-color: lightseagreen;
+}
 
 #today-weather {
     text-align: center;
 }
 
-
+.five-day{
+    text-align: center;
+}
 

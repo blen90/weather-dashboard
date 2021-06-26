@@ -2,7 +2,7 @@
 
 ## Link to my deployed repository
 
-
+https://blen90.github.io/hw6-weather-dashboard/
 
 ## My task
 
@@ -30,4 +30,4 @@ Before you begin, ensure you have met the following requirements:
 * You have installed the lastest Google Chrome browser.
 
 ## Screenshot of Weather Dashboard
-![Weather Dashboard](./assets/images/jpg)
+![Weather Dashboard](./assets/images/weather.jpg)
