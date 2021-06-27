@@ -8,6 +8,33 @@ $(document).ready(function () {
     $("#currentDay").text(currentDayEl.format('MMMM Do YYYY, h:mm:ss a'));
     console.log(currentDayEl);
 
+    const storageInput = document.querySelector(".storage");
+    console.log(storageInput);
+    const text = document.querySelector(".text");
+    console.log(text);
+
+    const buttonEl = document.querySelector(".searchBtn");
+    console.log(buttonEl);
+
+    const storedCity = localStorage.getItem("text");
+
+    if(storageInput) {
+        text.textContent = storedCity
+    }
+
+    storageInput.addEventListener("input", letter =>  {
+        console.log(letter);
+        text.textContent = letter.target.value
+    })
+
+    const cityStorage = () => {
+        localStorage.setItem("text", text.textContent)
+    }
+
+    buttonEl.addEventListener ("click", cityStorage);
+
+
+        
     // // get html
     // var html= $('#search-city')[0].outerHTML;
 

@@ -30,16 +30,20 @@
                     <label for="usr" class="text-white">Search City:</label>
                     <form id="search-form" class="mb-2">
                         <div class="form-inline form-group">
-                            <input type="text" class="form-control" id="search-city" placeholder="City name">
-                            <button id="search-button" class="searchBtn btn-primary"
-                                type="search"><i class="fas fa-search"></i>
+                            <input type="text" class="form-control storage" id="search-city" placeholder="City name">
+                            <button id="search-button" class="searchBtn btn-primary" type="search"><i
+                                    class="fas fa-search"></i>
                             </button>
+                            <div class="cities-list">
+                            <ul id="search-history" class="list-group bg-info"></ul>
+                            <p class="text">Cities</p>
                         </div>
+                    </div>
                     </form>
 
                     <!--List of search history-->
 
-                    <ul id="search-history" class="list-group bg-info"></ul>
+
 
                 </div>
                 <!-- Weather information-->
