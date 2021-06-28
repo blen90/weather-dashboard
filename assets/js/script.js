@@ -95,7 +95,7 @@ $(document).ready(function () {
                 console.log(data);
 
                 var titleEl = $("<h2>").addClass("card-title").text(data.name);
-                var tempEl = $("<h5>").addClass("card-text").text("Temperature: " + data.main.temp + " F");
+                var tempEl = $("<h5>").addClass("card-text").text("Temperature: " + data.main.temp + " °F");
                 var humidityEl = $("<h5>").addClass("card-text").text("Humidity: " + data.main.humidity + " %");
                 var windEl = $("<h5>").addClass("card-text").text("Wind speed: " + data.wind.speed + " MPH");
                 // var currentIcon = $("<div>").addClass("card-body").text("Weather icon: " + data.weather[0].icon);       
@@ -117,7 +117,7 @@ $(document).ready(function () {
         console.log("hey we're in searchForecast!!")
         console.log(searchValue, "in searchForecast")
 
-        var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchValue + "&appid=" + apiKey + "&units=metric";
+        var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchValue + "&appid=" + apiKey + "&units=imperial";
         console.log(forecastUrl)
 
         $.ajax({
