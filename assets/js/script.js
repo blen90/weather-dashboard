@@ -102,28 +102,71 @@ $(document).ready(function () {
                 uvIndex(coordinates)
                 
                     for (let i = 0; i < data.list.length; i++) {
-                        let fiveDay = {
-                            date: data.list[i].dt_txt,
+                       let fiveDay = {
                             icon: data.list[i].weather[0].icon,
                             temp: data.list[i].main.temp,
                             humidity: data.list[i].main.humidity,
-                            wind: data.list[i].main.wind
-    
+                            wind: data.list[i].main.wind  
                         }
                         
                     }
+                        
+                    var titleEl1 = $("<h2>").addClass("card-title").text(data.name);
+                    var tempEl1 = $("<h5>").addClass("card-text").text("Temperature: " + data.list[0].main.temp + " °F");
+                    var humidityEl1 = $("<h5>").addClass("card-text").text("Humidity: " + data.list[0].main.humidity + " %");
+                    var windEl1 = $("<h5>").addClass("card-text").text("Wind speed: " + data.list[0].main.wind + " MPH");
+                    var currentIconEl = $("<div>").addClass("card-body").prepend("<img src='http://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png' alt='Icon depicting current weather.'>");
+                    var card1 = $("<div>").addClass("card");
+                    var cardBody1 = $("<div>").addClass("card-body");
+                    cardBody1.append(titleEl1, tempEl1, humidityEl1, windEl1,currentIconEl);
+                    card1.append(cardBody1)
+                    $(".five-day").append(card1);
     
-                    // var titleEl1 = $("<h2>").addClass("card-title").text(data.name);
-                    // var tempEl1 = $("<h5>").addClass("card-text").text("Temperature: " + data.main.temp + " F");
-                    // var humidityEl1 = $("<h5>").addClass("card-text").text("Humidity: " + data.main.humidity + " %");
-                    // var windEl1 = $("<h5>").addClass("card-text").text("Wind speed: " + data.wind.speed + " MPH");
-                    // // var iconEl = $("<div>").addClass("card-image").(data.weather.icon);
-                    // var card1 = $("<div>").addClass("card");
-                    // var cardBody1 = $("<div>").addClass("card-body");
-                    // cardBody1.append(titleEl1, tempEl1, humidityEl1, windEl1);
-                    // card1.append(cardBody1)
-                    // $("#five-day").append(card);
-    
+                    var titleEl1 = $("<h2>").addClass("card-title").text(data.name);
+                    var tempEl1 = $("<h5>").addClass("card-text").text("Temperature: " + data.list[0].main.temp + " °F");
+                    var humidityEl1 = $("<h5>").addClass("card-text").text("Humidity: " + data.list[0].main.humidity + " %");
+                    var windEl1 = $("<h5>").addClass("card-text").text("Wind speed: " + data.list[0].main.wind + " MPH");
+                    var currentIconEl = $("<div>").addClass("card-body").prepend("<img src='http://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png' alt='Icon depicting current weather.'>");
+                    var card1 = $("<div>").addClass("card");
+                    var cardBody1 = $("<div>").addClass("card-body");
+                    cardBody1.append(titleEl1, tempEl1, humidityEl1, windEl1,currentIconEl);
+                    card1.append(cardBody1)
+                    $(".five-day").append(card1);
+
+                    var titleEl1 = $("<h2>").addClass("card-title").text(data.name);
+                    var tempEl1 = $("<h5>").addClass("card-text").text("Temperature: " + data.list[0].main.temp + " °F");
+                    var humidityEl1 = $("<h5>").addClass("card-text").text("Humidity: " + data.list[0].main.humidity + " %");
+                    var windEl1 = $("<h5>").addClass("card-text").text("Wind speed: " + data.list[0].main.wind + " MPH");
+                    var currentIconEl = $("<div>").addClass("card-body").prepend("<img src='http://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png' alt='Icon depicting current weather.'>");
+                    var card1 = $("<div>").addClass("card");
+                    var cardBody1 = $("<div>").addClass("card-body");
+                    cardBody1.append(titleEl1, tempEl1, humidityEl1, windEl1,currentIconEl);
+                    card1.append(cardBody1)
+                    $(".five-day").append(card1);
+
+
+                    var titleEl1 = $("<h2>").addClass("card-title").text(data.name);
+                    var tempEl1 = $("<h5>").addClass("card-text").text("Temperature: " + data.list[0].main.temp + " °F");
+                    var humidityEl1 = $("<h5>").addClass("card-text").text("Humidity: " + data.list[0].main.humidity + " %");
+                    var windEl1 = $("<h5>").addClass("card-text").text("Wind speed: " + data.list[0].main.wind + " MPH");
+                    var currentIconEl = $("<div>").addClass("card-body").prepend("<img src='http://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png' alt='Icon depicting current weather.'>");
+                    var card1 = $("<div>").addClass("card");
+                    var cardBody1 = $("<div>").addClass("card-body");
+                    cardBody1.append(titleEl1, tempEl1, humidityEl1, windEl1,currentIconEl);
+                    card1.append(cardBody1)
+                    $(".five-day").append(card1);
+
+
+                     var titleEl1 = $("<h2>").addClass("card-title").text(data.name);
+                    var tempEl1 = $("<h5>").addClass("card-text").text("Temperature: " + data.list[0].main.temp + " °F");
+                    var humidityEl1 = $("<h5>").addClass("card-text").text("Humidity: " + data.list[0].main.humidity + " %");
+                    var windEl1 = $("<h5>").addClass("card-text").text("Wind speed: " + data.list[0].main.wind + " MPH");
+                    var currentIconEl = $("<div>").addClass("card-body").prepend("<img src='http://openweathermap.org/img/w/" + data.list[0].weather[0].icon + ".png' alt='Icon depicting current weather.'>");
+                    var card1 = $("<div>").addClass("card");
+                    var cardBody1 = $("<div>").addClass("card-body");
+                    cardBody1.append(titleEl1, tempEl1, humidityEl1, windEl1,currentIconEl);
+                    card1.append(cardBody1)
+                    $(".five-day").append(card1);
                 }
             
         })
