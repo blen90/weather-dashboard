@@ -117,7 +117,7 @@ $(document).ready(function () {
         console.log("hey we're in searchForecast!!")
         console.log(searchValue, "in searchForecast")
 
-        var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchValue + "&appid=" + apiKey;
+        var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchValue + "&appid=" + apiKey + "&units=metric";
         console.log(forecastUrl)
 
         $.ajax({
