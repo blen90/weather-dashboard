@@ -1,7 +1,11 @@
 
 
 div.card{
-   background-color: lightseagreen;
+    display: inline-block;
+   background-color: purple;
+   color: white;
+   width: 20%;
+ 
 }
 
 #today-weather {
@@ -9,6 +13,9 @@ div.card{
 }
 
 .five-day{
+    display: grid;
     text-align: center;
+    /* width: 15%;
+    display: table; */
 }
 

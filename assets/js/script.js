@@ -151,6 +151,8 @@ $(document).ready(function () {
                 card1.append(cardBody1)
                 $(".five-day").append(card1);
 
+              
+
                 }
             }
 
@@ -173,6 +175,26 @@ $(document).ready(function () {
             success: function (data) {
                 console.log("UV INDEX DATA", data.value)
 
+                // var indexUv = $("<h5>").addClass("card-text").text("UV Index: " + data.value);
+                // console.log(data.value);
+
+                     //Changes UV badge color based on UV Index number
+            // if (data.value <= 4) {              
+            //     $(uvIndex).css("color", "green");
+            // }
+
+            // else if (data.value > 4 && data.value <= 7) {
+            //     $(uvIndex).removeClass("color", "green");
+            //     $(uvIndex).css("color", "orange");
+            // }
+
+            // else {
+            //     $(uvIndex).removeClass("color", "green");
+            //     $(uvIndex).removeClass("color", "orange");
+            //     $(uvIndex).css("color", "red");
+              
+            // }
+
             }
         })
     }
@@ -186,6 +208,8 @@ $(document).ready(function () {
         searchCity(searchValue);
 
         forecastSearch(searchValue);
+
+        // uvIndex(data.value);
 
         // cityArray.push(searchValue)
         // console.log(cityArray)
