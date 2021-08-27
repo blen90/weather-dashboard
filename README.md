@@ -2,7 +2,7 @@
 
 ## Link to my deployed repository
 
-https://blen90.github.io/hw6-weather-dashboard/
+https://blen90.github.io/weather-dashboard/
 
 ## My task
 
