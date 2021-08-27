@@ -2,78 +2,50 @@ $(document).ready(function () {
     console.log("we're working")
 
 
-
-    // var date = moment().format("MM/DD/YYYY");
-
     // Set currentDayEl to display currentDay in the header
     var currentDayEl = moment();
     $("#currentDay").text(currentDayEl.format('MMMM Do YYYY, h:mm:ss a'));
     console.log(currentDayEl);
 
     let cityArray = [];
-
-
-    $(".searchBtn").on("click", function (e) {
-        e.preventDefault();
-
-        var value = $(this).siblings(".storage").val();
-        console.log(value, "value");
-        console.log(value);
-        localStorage.setItem(value, "value");
-
-        //Load saved activities from local storage and saved event stays on page
-    // localStorage.getItem(".storage");
-
-    // $("#search-history").val(localStorage.getItem(".storage"));
-
+ 
     
+let clickCity;
+let newButton;
+    function renderButtons(){
+        $("#cityButton").html("");
+        for(var i = 0; i < cityArray.length; i++){
+            var city = cityArray[i];
+            console.log(city)
+            newButton = $("<button>");
+            newButton.addClass("btn searchResult display-4 mx-auto");
+            newButton.attr("data-name", city);
+            newButton.attr("id", "cityButton");
+            newButton.text(city);
 
-        var historyBtn = $('<button/>').attr({ type: 'button', name:'history', value:"value" });
-        historyBtn.append(value);
-        $(".history").append(value);
-    })
+            $("#search-history").prepend(newButton);
+            console.log(newButton);
+        }
+    }
 
-   
+   $("#search-history").on('click', "button", function (event){
+       event.preventDefault();
+    clickCity = $(this).attr("data-name")
+    console.log(clickCity)
+    searchCity(clickCity);
+    forecastSearch(clickCity);
 
-    
+    //clear searchHistory
+   })
 
+   function Storage(){
+       var storedCity = JSON.parse(localStorage.getItem("cityHistory"))
+       if(storedCity !== null){
+           cityArray = storedCity
+       }
+       renderButtons();
+   }
 
-
-    // const storageInput = document.querySelector(".storage");
-    // console.log(storageInput);
-    // const text = document.querySelector(".text");
-    // console.log(text);
-
-    // const buttonEl = document.querySelector(".searchBtn");
-    // console.log(buttonEl);
-
-    // const storedCity = localStorage.getItem("text");
-
-    // if(storageInput) {
-    //     text.textContent = storedCity
-    // }
-
-    // storageInput.addEventListener("input", letter =>  {
-    //     console.log(letter);
-    //     text.textContent = letter.target.value
-    // })
-
-    // const cityStorage = () => {
-    //     localStorage.setItem("text", text.textContent)
-    // }
-
-    // buttonEl.addEventListener ("click", cityStorage);
-
-
-
-    // // get html
-    // var html= $('#search-city')[0].outerHTML;
-
-    // // set localstorage
-    // localStorage.setItem('#search-history', html);
-
-    // // test if it works
-    // alert(localStorage.getItem('html'));
 
     //API key
 
@@ -82,7 +54,7 @@ $(document).ready(function () {
     function searchCity(searchValue) {
         console.log("hey we're in searchCity!!!");
         console.log(searchValue, "in search city");
-
+    
         var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=" + apiKey + "&units=imperial";
         // var fancyApiUrl =`api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid= ${apiKey}`
         console.log(apiUrl)
@@ -94,16 +66,17 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
 
-                var titleEl = $("<h2>").addClass("card-title").text(data.name);
-                var tempEl = $("<h5>").addClass("card-text").text("Temperature: " + data.main.temp + " °F");
-                var humidityEl = $("<h5>").addClass("card-text").text("Humidity: " + data.main.humidity + " %");
-                var windEl = $("<h5>").addClass("card-text").text("Wind speed: " + data.wind.speed + " MPH");
+                var titleEl = $("<h4>").addClass("card-title").text(data.name);
+                var tempEl = $("<h6>").addClass("card-text").text("Temperature: " + data.main.temp + " °F");
+                var humidityEl = $("<h6>").addClass("card-text").text("Humidity: " + data.main.humidity + " %");
+                var windEl = $("<h6>").addClass("card-text").text("Wind speed: " + data.wind.speed + " MPH");
                 // var currentIcon = $("<div>").addClass("card-body").text("Weather icon: " + data.weather[0].icon);       
                 var currentIcon = $("<div>").addClass("card-body").prepend("<img src='http://openweathermap.org/img/w/" + data.weather[0].icon + ".png' alt='Icon depicting current weather.'>");
                 console.log(currentIcon);
 
+
                 var card = $("<div>").addClass("card");
-                var cardBody = $("<div>").addClass("card-body");
+                var cardBody = $("<div>").addClass("card-body-weather");
                 cardBody.append(titleEl, tempEl, humidityEl, windEl, currentIcon);
                 card.append(cardBody);
                 $("#today-weather").append(card);
@@ -139,15 +112,15 @@ $(document).ready(function () {
                         wind: data.list[i].main.wind
                     }
 
-                
-                var titleEl1 = $("<h2>").addClass("card-title").text(data.name);
-                var tempEl1 = $("<h5>").addClass("card-text").text("Temperature: " + data.list[i].main.temp + " °F");
-                var humidityEl1 = $("<h5>").addClass("card-text").text("Humidity: " + data.list[i].main.humidity + " %");
-                var windEl1 = $("<h5>").addClass("card-text").text("Wind speed: " + data.list[i].wind.speed + " MPH");
+                var cityEl = $("<h4>").addClass("card-text").text(searchValue);
+                // var dateEl = $("<h6>").addClass("card-text").text('MMMM Do YYYY');
+                var tempEl1 = $("<h6>").addClass("card-text").text("Temperature: " + data.list[i].main.temp + " °F");
+                var humidityEl1 = $("<h6>").addClass("card-text").text("Humidity: " + data.list[i].main.humidity + " %");
+                var windEl1 = $("<h6>").addClass("card-text").text("Wind speed: " + data.list[i].wind.speed + " MPH");
                 var currentIconEl = $("<div>").addClass("card-body").prepend("<img src='http://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png' alt='Icon depicting current weather.'>");
                 var card1 = $("<div>").addClass("card");
-                var cardBody1 = $("<div>").addClass("card-body");
-                cardBody1.append(titleEl1, tempEl1, humidityEl1, windEl1, currentIconEl);
+                var cardBody1 = $("<div>").addClass("card-body-forecast");
+                cardBody1.append(cityEl, tempEl1, humidityEl1, windEl1, currentIconEl);
                 card1.append(cardBody1)
                 $(".five-day").append(card1);
 
@@ -155,6 +128,7 @@ $(document).ready(function () {
 
                 }
             }
+
 
         })
     }
@@ -165,7 +139,7 @@ $(document).ready(function () {
         console.log(coordinates, "UV INDEX")
 
 
-        var IndexUrl = "https://api.openweathermap.org/data/2.5/uvi?lat=" + coordinates.lat + "&lon=" + coordinates.long + "&appid=" + apiKey;
+        var IndexUrl = "https://api.openweathermap.org/data/2.5/uvi?lat=" + coordinates.lat + "&lon=" + coordinates.long + "&appid=" + apiKey + "&units=imperial";
         console.log(IndexUrl)
 
         $.ajax({
@@ -175,28 +149,32 @@ $(document).ready(function () {
             success: function (data) {
                 console.log("UV INDEX DATA", data.value)
 
-                // var indexUv = $("<h5>").addClass("card-text").text("UV Index: " + data.value);
-                // console.log(data.value);
+                
+                var indexUv = $("<h6>").text("UV Index: " + data.value);
+                console.log(data.value);
 
-                     //Changes UV badge color based on UV Index number
-            // if (data.value <= 4) {              
-            //     $(uvIndex).css("color", "green");
-            // }
-
-            // else if (data.value > 4 && data.value <= 7) {
-            //     $(uvIndex).removeClass("color", "green");
-            //     $(uvIndex).css("color", "orange");
-            // }
-
-            // else {
-            //     $(uvIndex).removeClass("color", "green");
-            //     $(uvIndex).removeClass("color", "orange");
-            //     $(uvIndex).css("color", "red");
-              
-            // }
-
+            if (data.value <= 4) {              
+                $(indexUv).css("color", "green");
             }
+
+            else if (data.value > 4 && data.value <= 7) {
+                $(indexUv).removeClass("color", "green");
+                $(indexUv).css("color", "orange");
+            }
+
+            else {
+                $(indexUv).removeClass("color", "green");
+                $(indexUv).removeClass("color", "orange");
+                $(indexUv).css("color", "red");
+                
+            }
+            
+                $(".card-body-weather").append(indexUv);
+            }
+        
+            
         })
+ 
     }
 
     $(".searchBtn").on("click", function (e) {
@@ -205,17 +183,28 @@ $(document).ready(function () {
         var searchValue = $('#search-city').val()
         console.log(searchValue)
 
+        if(searchValue === ""){
+            alert("Please type in a city")
+        }
+        else{
+        cityArray.push(searchValue)
+        localStorage.setItem("cityHistory", JSON.stringify(cityArray));
+
+
         searchCity(searchValue);
 
         forecastSearch(searchValue);
 
+        renderButtons();
         // uvIndex(data.value);
 
-        // cityArray.push(searchValue)
-        // console.log(cityArray)
+        cityArray.push(searchValue)
+        console.log(cityArray)
+        }
 
 
     })
+    Storage();
 })
 
 
