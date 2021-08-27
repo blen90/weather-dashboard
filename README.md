@@ -1,4 +1,4 @@
-# hw6-weather-dashboard
+# weather-dashboard
 
 ## Link to my deployed repository
 
