@@ -1,33 +1,58 @@
-# weather-dashboard
+# Weather Dashboard
 
-## Link to my deployed repository
+[![GitHub license](https://img.shields.io/badge/License-MIT-blue.svg)](https://blen90.github.io/weather-dashboard/)
+
+# Description
+
+This app allows the user to search for a city and see the current weather in real time, and the weather forecast for the next five days. It utilizes Open Weather API. The user can see the current temperature, humidity, wind speed, current weather icon. In the current weather card the user can also see the UV Index. 
+
+## Deployed App link 
 
 https://blen90.github.io/weather-dashboard/
 
-## My task
+## Screenshots of the app
 
-My task for this homework was to work on a Weather Dashboard by retrieving data from another application's API that will run in the browser and feature dynamically updated HTML and CSS.
-
-The criteria to meet for this homework was the following:
-```
-GIVEN a weather dashboard with form inputs
-WHEN I search for a city
-THEN I am presented with current and future conditions for that city and that city is added to the search history
-WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-WHEN I view the UV index
-THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
-WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
-```
-
-## Prerequisites
-Before you begin, ensure you have met the following requirements:
-* You have installed the latest version of Visual Studio Code. 
-* You are using a Windows or Mac OS machine. OS version 10 or above.
-* You have installed the lastest Google Chrome browser.
-
-## Screenshot of Weather Dashboard
 ![Weather Dashboard](./assets/images/weather.jpg)
+
+# Table of Contents
+
+* [Installation](#installation)
+    
+* [Usage](#usage)
+
+* [Technology](#technology)
+
+* [License](#license)
+
+* [Contributors](#contributors)
+
+* [Questions](#questions)
+
+# Installation
+
+Visit the deployed app in the following link: https://blen90.github.io/weather-dashboard/
+
+# Usage
+
+This application allows the user to search for a city and see the current weather and the weather forecast for the next five days.
+
+# Technology
+
+* HTML
+* JavaScript
+* Open Weather API
+* CSS
+
+# License 
+
+This project is governed by: MIT License
+
+# Contributors
+
+Blenda Orellana
+
+# Questions
+
+If you have any questions about the repo or the app please feel free to contact me
+ * Email: blen.or90@gmail.com
+ * Github: https://github.com/blen90
