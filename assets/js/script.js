@@ -8,13 +8,13 @@ $(document).ready(function () {
     console.log(currentDayEl);
 
     let cityArray = [];
- 
-    
-let clickCity;
-let newButton;
-    function renderButtons(){
+
+
+    let clickCity;
+    let newButton;
+    function renderButtons() {
         $("#cityButton").html("");
-        for(var i = 0; i < cityArray.length; i++){
+        for (var i = 0; i < cityArray.length; i++) {
             var city = cityArray[i];
             console.log(city)
             newButton = $("<button>");
@@ -28,23 +28,23 @@ let newButton;
         }
     }
 
-   $("#search-history").on('click', "button", function (event){
-       event.preventDefault();
-    clickCity = $(this).attr("data-name")
-    console.log(clickCity)
-    searchCity(clickCity);
-    forecastSearch(clickCity);
+    $("#search-history").on('click', "button", function (event) {
+        event.preventDefault();
+        clickCity = $(this).attr("data-name")
+        console.log(clickCity)
+        searchCity(clickCity);
+        forecastSearch(clickCity);
 
-    //clear searchHistory
-   })
+        //clear searchHistory
+    })
 
-   function Storage(){
-       var storedCity = JSON.parse(localStorage.getItem("cityHistory"))
-       if(storedCity !== null){
-           cityArray = storedCity
-       }
-       renderButtons();
-   }
+    function Storage() {
+        var storedCity = JSON.parse(localStorage.getItem("cityHistory"))
+        if (storedCity !== null) {
+            cityArray = storedCity
+        }
+        renderButtons();
+    }
 
 
     //API key
@@ -54,7 +54,8 @@ let newButton;
     function searchCity(searchValue) {
         console.log("hey we're in searchCity!!!");
         console.log(searchValue, "in search city");
-    
+        var DayEl = moment().format('L'); 
+     
         var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=" + apiKey + "&units=imperial";
         // var fancyApiUrl =`api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid= ${apiKey}`
         console.log(apiUrl)
@@ -66,7 +67,9 @@ let newButton;
             success: function (data) {
                 console.log(data);
 
+
                 var titleEl = $("<h4>").addClass("card-title").text(data.name);
+                var headerEl = $("<h5>").addClass("card-header").text(DayEl);
                 var tempEl = $("<h6>").addClass("card-text").text("Temperature: " + data.main.temp + " °F");
                 var humidityEl = $("<h6>").addClass("card-text").text("Humidity: " + data.main.humidity + " %");
                 var windEl = $("<h6>").addClass("card-text").text("Wind speed: " + data.wind.speed + " MPH");
@@ -77,7 +80,7 @@ let newButton;
 
                 var card = $("<div>").addClass("card");
                 var cardBody = $("<div>").addClass("card-body-weather");
-                cardBody.append(titleEl, tempEl, humidityEl, windEl, currentIcon);
+                cardBody.append(titleEl, headerEl, tempEl, humidityEl, windEl, currentIcon);
                 card.append(cardBody);
                 $("#today-weather").append(card);
 
@@ -92,6 +95,7 @@ let newButton;
 
         var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchValue + "&appid=" + apiKey + "&units=imperial";
         console.log(forecastUrl)
+        
 
         $.ajax({
             type: "GET",
@@ -103,7 +107,7 @@ let newButton;
                 let coordinates = { lat: data.city.coord.lat, long: data.city.coord.lon }
                 uvIndex(coordinates)
 
-                for (let i = 0; i < data.list.length; i+= 8) {
+                for (let i = 0; i < data.list.length; i += 8) {
                     console.log(data.list);
                     let fiveDay = {
                         icon: data.list[i].weather[0].icon,
@@ -112,19 +116,19 @@ let newButton;
                         wind: data.list[i].main.wind
                     }
 
-                var cityEl = $("<h4>").addClass("card-text").text(searchValue);
-                // var dateEl = $("<h6>").addClass("card-text").text('MMMM Do YYYY');
-                var tempEl1 = $("<h6>").addClass("card-text").text("Temperature: " + data.list[i].main.temp + " °F");
-                var humidityEl1 = $("<h6>").addClass("card-text").text("Humidity: " + data.list[i].main.humidity + " %");
-                var windEl1 = $("<h6>").addClass("card-text").text("Wind speed: " + data.list[i].wind.speed + " MPH");
-                var currentIconEl = $("<div>").addClass("card-body").prepend("<img src='http://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png' alt='Icon depicting current weather.'>");
-                var card1 = $("<div>").addClass("card");
-                var cardBody1 = $("<div>").addClass("card-body-forecast");
-                cardBody1.append(cityEl, tempEl1, humidityEl1, windEl1, currentIconEl);
-                card1.append(cardBody1)
-                $(".five-day").append(card1);
+                    var cityEl = $("<h4>").addClass("card-text").text(searchValue);
+                    // var headerEl = $("<h5>").addClass("card-header").text(currentDay1);
+                    var tempEl1 = $("<h6>").addClass("card-text").text("Temperature: " + data.list[i].main.temp + " °F");
+                    var humidityEl1 = $("<h6>").addClass("card-text").text("Humidity: " + data.list[i].main.humidity + " %");
+                    var windEl1 = $("<h6>").addClass("card-text").text("Wind speed: " + data.list[i].wind.speed + " MPH");
+                    var currentIconEl = $("<div>").addClass("card-body").prepend("<img src='http://openweathermap.org/img/w/" + data.list[i].weather[0].icon + ".png' alt='Icon depicting current weather.'>");
+                    var card1 = $("<div>").addClass("card");
+                    var cardBody1 = $("<div>").addClass("card-body-forecast");
+                    cardBody1.append(cityEl, tempEl1, humidityEl1, windEl1, currentIconEl);
+                    card1.append(cardBody1)
+                    $(".five-day").append(card1);
 
-              
+                
 
                 }
             }
@@ -149,32 +153,32 @@ let newButton;
             success: function (data) {
                 console.log("UV INDEX DATA", data.value)
 
-                
+
                 var indexUv = $("<h6>").text("UV Index: " + data.value);
                 console.log(data.value);
 
-            if (data.value <= 4) {              
-                $(indexUv).css("color", "green");
-            }
+                if (data.value <= 4) {
+                    $(indexUv).css("color", "green");
+                }
 
-            else if (data.value > 4 && data.value <= 7) {
-                $(indexUv).removeClass("color", "green");
-                $(indexUv).css("color", "orange");
-            }
+                else if (data.value > 4 && data.value <= 7) {
+                    $(indexUv).removeClass("color", "green");
+                    $(indexUv).css("color", "orange");
+                }
 
-            else {
-                $(indexUv).removeClass("color", "green");
-                $(indexUv).removeClass("color", "orange");
-                $(indexUv).css("color", "red");
-                
-            }
-            
+                else {
+                    $(indexUv).removeClass("color", "green");
+                    $(indexUv).removeClass("color", "orange");
+                    $(indexUv).css("color", "red");
+
+                }
+
                 $(".card-body-weather").append(indexUv);
             }
-        
-            
+
+
         })
- 
+
     }
 
     $(".searchBtn").on("click", function (e) {
@@ -183,23 +187,23 @@ let newButton;
         var searchValue = $('#search-city').val()
         console.log(searchValue)
 
-        if(searchValue === ""){
+        if (searchValue === "") {
             alert("Please type in a city")
         }
-        else{
-        cityArray.push(searchValue)
-        localStorage.setItem("cityHistory", JSON.stringify(cityArray));
+        else {
+            cityArray.push(searchValue)
+            localStorage.setItem("cityHistory", JSON.stringify(cityArray));
 
 
-        searchCity(searchValue);
+            searchCity(searchValue);
 
-        forecastSearch(searchValue);
+            forecastSearch(searchValue);
 
-        renderButtons();
-        // uvIndex(data.value);
+            renderButtons();
+            // uvIndex(data.value);
 
-        cityArray.push(searchValue)
-        console.log(cityArray)
+            cityArray.push(searchValue)
+            console.log(cityArray)
         }
 
 
