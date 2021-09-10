@@ -12,6 +12,7 @@ $(document).ready(function () {
 
     let clickCity;
     let newButton;
+
     function renderButtons() {
         $("#cityButton").html("");
         for (var i = 0; i < cityArray.length; i++) {
@@ -22,7 +23,6 @@ $(document).ready(function () {
             newButton.attr("data-name", city);
             newButton.attr("id", "cityButton");
             newButton.text(city);
-
             $("#search-history").prepend(newButton);
             console.log(newButton);
         }
@@ -54,11 +54,14 @@ $(document).ready(function () {
     function searchCity(searchValue) {
         console.log("hey we're in searchCity!!!");
         console.log(searchValue, "in search city");
-        var DayEl = moment().format('L'); 
+        var DayEl = moment().format('L');
+        
      
         var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=" + apiKey + "&units=imperial";
         // var fancyApiUrl =`api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid= ${apiKey}`
         console.log(apiUrl)
+
+
 
         $.ajax({
             type: "GET",
@@ -66,7 +69,6 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                 console.log(data);
-
 
                 var titleEl = $("<h4>").addClass("card-title").text(data.name);
                 var headerEl = $("<h5>").addClass("card-header").text(DayEl);
@@ -82,7 +84,7 @@ $(document).ready(function () {
                 var cardBody = $("<div>").addClass("card-body-weather");
                 cardBody.append(titleEl, headerEl, tempEl, humidityEl, windEl, currentIcon);
                 card.append(cardBody);
-                $("#today-weather").append(card);
+                $("#today-weather").append(card); 
 
             }
         })
@@ -139,29 +141,29 @@ $(document).ready(function () {
 
     //Uv Index function
 
-    function uvIndex(coordinates) {
-        console.log(coordinates, "UV INDEX")
+    function uvIndex(searchValue) {
+        // console.log(current, "UV INDEX")
 
 
-        var IndexUrl = "https://api.openweathermap.org/data/2.5/uvi?lat=" + coordinates.lat + "&lon=" + coordinates.long + "&appid=" + apiKey + "&units=imperial";
+        var IndexUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${searchValue.lat}&lon=${searchValue.long}&appid=${apiKey}`;
         console.log(IndexUrl)
 
         $.ajax({
             type: "GET",
             url: IndexUrl,
             dataType: "json",
-            success: function (data) {
-                console.log("UV INDEX DATA", data.value)
+            success: function (uvi) {
+                console.log("UV INDEX current", uvi.current.uvi)
 
 
-                var indexUv = $("<h6>").text("UV Index: " + data.value);
-                console.log(data.value);
+                var indexUv = $("<h6>").text("UV Index: " + uvi.current.uvi);
+                console.log(uvi.current.uvi);
 
-                if (data.value <= 4) {
+                if (uvi.current.uvi <= 4) {
                     $(indexUv).css("color", "green");
                 }
 
-                else if (data.value > 4 && data.value <= 7) {
+                else if (uvi.current.uvi > 4 && uvi.current.uvi <= 7) {
                     $(indexUv).removeClass("color", "green");
                     $(indexUv).css("color", "orange");
                 }
@@ -183,6 +185,7 @@ $(document).ready(function () {
 
     $(".searchBtn").on("click", function (e) {
         e.preventDefault();
+
         console.log("we've been clicked!!")
         var searchValue = $('#search-city').val()
         console.log(searchValue)
@@ -204,6 +207,7 @@ $(document).ready(function () {
 
             cityArray.push(searchValue)
             console.log(cityArray)
+
         }
 
 
@@ -212,3 +216,4 @@ $(document).ready(function () {
 })
 
 
+        
