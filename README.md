@@ -40,8 +40,10 @@ This application allows the user to search for a city and see the current weathe
 
 * HTML
 * JavaScript
-* Open Weather API
 * CSS
+* MomentJs
+* Open Weather API
+
 
 # License 
 
